@@ -1,10 +1,12 @@
-'use client'
+'use client';
 
-import { forwardRef, Suspense, useImperativeHandle, useRef } from 'react'
-import { OrbitControls, PerspectiveCamera, View as ViewImpl } from '@react-three/drei'
-import { Three } from '@/helpers/components/Three'
+import {forwardRef, Suspense, useImperativeHandle, useRef} from 'react';
+import {OrbitControls, PerspectiveCamera, View as ViewImpl} from '@react-three/drei';
+import {Three} from '@/helpers/components/Three';
+import {ColorRepresentation} from 'three';
+import {vec3} from '@react-three/rapier';
 
-export const Common = ({ color }) => (
+export const Common = ({color}: {color?: ColorRepresentation}) => (
   <Suspense fallback={null}>
     {color && <color attach='background' args={[color]} />}
     <ambientLight intensity={0.5} />
@@ -12,24 +14,32 @@ export const Common = ({ color }) => (
     <pointLight position={[-10, -10, -10]} color='blue' />
     <PerspectiveCamera makeDefault fov={40} position={[0, 0, 6]} />
   </Suspense>
-)
+);
 
-const View = forwardRef(({ children, orbit, ...props }, ref) => {
-  const localRef = useRef(null)
-  useImperativeHandle(ref, () => localRef.current)
+interface ViewProps {
+  children: React.ReactNode;
+  orbit?: boolean;
+  className?: string;
+}
+
+const vec = vec3({x: -40.13634585899792, y: -3.3371161519005126, z: 13.222374925235437});
+
+const View = forwardRef<unknown, ViewProps>(({children, orbit, ...props}, ref) => {
+  const localRef = useRef(null);
+  useImperativeHandle(ref, () => localRef.current);
 
   return (
     <>
-      <div ref={localRef} {...props} />
+      <div ref={localRef} {...props} style={{height: '100%', width: '100%'}} />
       <Three>
         <ViewImpl track={localRef}>
           {children}
-          {orbit && <OrbitControls />}
+          {orbit && <OrbitControls target={vec} />}
         </ViewImpl>
       </Three>
     </>
-  )
-})
-View.displayName = 'View'
+  );
+});
+View.displayName = 'View';
 
-export { View }
+export {View};

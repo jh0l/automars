@@ -4,6 +4,14 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "eslint.validate": ["javascript"],
-  "eslint.workingDirectories": [{ "mode": "auto" }]
+  "eslint.validate": [
+    "javascript"
+  ],
+  "eslint.workingDirectories": [
+    {
+      "mode": "auto"
+    }
+  ],
+  "typescript.tsdk": "node_modules/.pnpm/typescript@5.0.4/node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
