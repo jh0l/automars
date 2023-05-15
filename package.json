@@ -49,6 +49,7 @@
   "scripts": {
     "lint": "next lint --fix --dir app",
     "dev": "next dev",
+    "tsc": "tsc",
     "build": "next build",
     "analyze": "ANALYZE=true next build",
     "start": "next start",

@@ -136,13 +136,18 @@ export function CarEntity({
     }
     if (canvasRef.current.luminance.get(0) && autoRef.current.state.sample) {
       const v = canvasRef.current.luminance;
+      // eslint-disable-next-line no-console
       console.log(v);
+      // eslint-disable-next-line no-console
       console.log(canvasRef.current.luminance);
       for (let i = 0; i < floatyBoxesRef.current.length; i++) {
+        // eslint-disable-next-line no-console
         console.log(i);
         const floatyBox = floatyBoxesRef.current[i];
+        // eslint-disable-next-line no-console
         console.log(floatyBox.current?.getWorldPosition(STUPID_VEC));
         const vector = canvasRef.current.vectors[i];
+        // eslint-disable-next-line no-console
         console.log(vector);
       }
     }

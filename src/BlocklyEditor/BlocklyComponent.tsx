@@ -33,7 +33,6 @@ export default function BlocklyComponent({initialXml, options, className, childr
       toolbox: toolboxRef.current,
       ...options,
     });
-    console.log('Blockly injected');
 
     localStorage.load(workspcRef.current, initialXml);
 

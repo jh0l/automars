@@ -22,6 +22,7 @@ export function useControls(canvasRef: RefObject<CanvasRes>) {
       if (!ref.current.run(delta)) setState({auto: false});
     }
     if (ref.current.state.sample) {
+      // eslint-disable-next-line no-console
       console.log(canvasRef.current?.luminance);
     }
     // apply onscreencontrol values
@@ -86,7 +87,6 @@ function useKeyboard(ctrl: RefObject<AutoTraceVehicle>, stateArr: StateArr) {
       if (auto) setState(s => ({auto: !s.auto}));
 
       if (reset) {
-        console.log('reset');
         app.resetPhysics();
         if (app.paused) app.altPaused();
       }

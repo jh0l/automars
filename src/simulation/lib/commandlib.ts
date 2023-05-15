@@ -339,6 +339,5 @@ const TRACE_TEST: CommandBarMaker[] = [
 ];
 
 export function evalCommandQueue(code: string): () => (CommandBarMakerUnit | null)[] {
-  console.log(code);
   return eval(code);
 }
