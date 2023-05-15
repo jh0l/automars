@@ -47,7 +47,7 @@
     "url-loader": "^4.1.1"
   },
   "scripts": {
-    "lint": "next lint --fix --dir app",
+    "lint": "next lint --fix --dir app --dir src",
     "dev": "next dev",
     "tsc": "tsc",
     "build": "next build",

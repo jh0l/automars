@@ -1,6 +1,6 @@
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
-})
+});
 
 /**
  * A fork of 'next-pwa' that has app directory support
@@ -9,7 +9,7 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 const withPWA = require('@ducanh2912/next-pwa').default({
   dest: 'public',
   disable: process.env.NODE_ENV === 'development',
-})
+});
 
 const nextConfig = {
   // uncomment the following snippet if using styled components
@@ -18,11 +18,11 @@ const nextConfig = {
   // },
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
   experimental: {
-    reactRoot: 'concurrent',
+    // reactRoot: 'concurrent',
     appDir: true,
   },
   images: {},
-  webpack(config, { isServer }) {
+  webpack(config, {isServer}) {
     // audio support
     config.module.rules.push({
       test: /\.(ogg|mp3|wav|mpe?g)$/i,
@@ -40,35 +40,43 @@ const nextConfig = {
           },
         },
       ],
-    })
+    });
 
     // shader support
     config.module.rules.push({
       test: /\.(glsl|vs|fs|vert|frag)$/,
       exclude: /node_modules/,
       use: ['raw-loader', 'glslify-loader'],
-    })
+    });
 
-    return config
+    return config;
   },
-}
+};
 
-const KEYS_TO_OMIT = ['webpackDevMiddleware', 'configOrigin', 'target', 'analyticsId', 'webpack5', 'amp', 'assetPrefix']
+const KEYS_TO_OMIT = [
+  'webpackDevMiddleware',
+  'configOrigin',
+  'target',
+  'analyticsId',
+  'webpack5',
+  'amp',
+  'assetPrefix',
+];
 
-module.exports = (_phase, { defaultConfig }) => {
-  const plugins = [[withPWA], [withBundleAnalyzer, {}]]
+module.exports = (_phase, {defaultConfig}) => {
+  const plugins = [[withPWA], [withBundleAnalyzer, {}]];
 
-  const wConfig = plugins.reduce((acc, [plugin, config]) => plugin({ ...acc, ...config }), {
+  const wConfig = plugins.reduce((acc, [plugin, config]) => plugin({...acc, ...config}), {
     ...defaultConfig,
     ...nextConfig,
-  })
+  });
 
-  const finalConfig = {}
-  Object.keys(wConfig).forEach((key) => {
+  const finalConfig = {};
+  Object.keys(wConfig).forEach(key => {
     if (!KEYS_TO_OMIT.includes(key)) {
-      finalConfig[key] = wConfig[key]
+      finalConfig[key] = wConfig[key];
     }
-  })
+  });
 
-  return finalConfig
-}
+  return finalConfig;
+};

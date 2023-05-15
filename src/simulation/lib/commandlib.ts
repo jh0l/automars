@@ -11,6 +11,7 @@ export class Luminance {
     else if (side === 'lft' || side === 1) this.lft = value;
     else if (side === 'bot' || side === 2) this.bot = value;
     else if (side === 'rgt' || side === 3) this.rgt = value;
+    // eslint-disable-next-line no-console
     else console.warn('unknown side', side);
   }
   get(number: number): number {
