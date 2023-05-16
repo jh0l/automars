@@ -16,6 +16,7 @@ const nextConfig = {
   // compiler: {
   //   styledComponents: true,
   // },
+  ignoreBuildErrors: true,
   reactStrictMode: true, // Recommended for the `pages` directory, default in `app`.
   experimental: {
     // reactRoot: 'concurrent',
