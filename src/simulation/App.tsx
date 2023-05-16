@@ -46,24 +46,10 @@ const Simulation = () => {
     <div className='h-1/2 w-full'>
       <Canvas shadows>
         <OrbitControls enabled={cameraEnabled} target={TARG_LOC} />
+        {/** @ts-ignore */}
         <OrthographicCamera position={CAM_LOC} zoom={CAM_ZOOM} makeDefault />
         <StrictMode>
           <Physics paused={paused} key={physicsKey} gravity={[0, -200, 0]} debug>
-            <directionalLight
-              castShadow
-              position={[10, 10, 10]}
-              shadow-camera-bottom={-40}
-              shadow-camera-top={40}
-              shadow-camera-left={-40}
-              shadow-camera-right={40}
-              shadow-mapSize-width={1024}
-              shadow-bias={-0.0001}
-            />
-            <Environment
-              // preset="city"
-              files='img/potsdamer_platz_1k.hdr'
-            />
-
             <Level />
             {perf && <Perf />}
           </Physics>

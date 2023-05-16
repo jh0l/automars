@@ -1,7 +1,7 @@
 'use client';
 
 import {forwardRef, Suspense, useImperativeHandle, useRef} from 'react';
-import {OrbitControls, PerspectiveCamera, View as ViewImpl} from '@react-three/drei';
+import {Environment, OrbitControls, PerspectiveCamera, View as ViewImpl} from '@react-three/drei';
 import {Three} from '@/helpers/components/Three';
 import {ColorRepresentation} from 'three';
 import {vec3} from '@react-three/rapier';
@@ -12,8 +12,20 @@ export const Common = ({color}: {color?: ColorRepresentation}) => (
     <ambientLight intensity={0.5} />
     <pointLight position={[20, 30, 10]} intensity={1} />
     <pointLight position={[-10, -10, -10]} color='blue' />
-    {/** @ts-ignore */}
-    <PerspectiveCamera makeDefault fov={40} position={[0, 0, 6]} />
+    <directionalLight
+      castShadow
+      position={[10, 10, 10]}
+      shadow-camera-bottom={-40}
+      shadow-camera-top={40}
+      shadow-camera-left={-40}
+      shadow-camera-right={40}
+      shadow-mapSize-width={1024}
+      shadow-bias={-0.0001}
+    />
+    <Environment
+      // preset="city"
+      files='img/potsdamer_platz_1k.hdr'
+    />
   </Suspense>
 );
 
